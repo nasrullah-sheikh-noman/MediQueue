@@ -14,7 +14,9 @@ const Navbar = () => {
           <Link href="/mybookedsessions">My Booked Sessions</Link>
         </div>
         <div>
-          <Button className={"cursor-pointer"}>Login</Button>
+          <Link href={"/login"}>
+            <Button className={"cursor-pointer"}>Login</Button>
+          </Link>
         </div>
       </div>
     </>
