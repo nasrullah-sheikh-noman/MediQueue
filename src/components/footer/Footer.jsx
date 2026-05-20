@@ -1,11 +1,10 @@
 import Link from "next/link"
-import { DiGithub } from "react-icons/di"
-import { FaFacebook, FaFacebookF, FaGithub } from "react-icons/fa"
-import { GiThunderBlade } from "react-icons/gi"
+import { FaFacebookF, FaGithub } from "react-icons/fa"
 import { LiaLinkedin } from "react-icons/lia"
 
 export default function Footer() {
   return (
+    <>
     <footer className="border-t bg-zinc-950 text-white">
       <div className="container mx-auto px-6 py-14">
         
@@ -67,5 +66,6 @@ export default function Footer() {
 
       </div>
     </footer>
+  </>
   )
 }

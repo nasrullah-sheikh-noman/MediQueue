@@ -11,7 +11,7 @@ const Navbar = () => {
           <Link href="/tutors">Tutors</Link>
           <Link href="/addtutor">Add Tutor</Link>
           <Link href="/mytutor">My Tutor</Link>
-          <Link href="/mybookedsession">My Booked Sessions</Link>
+          <Link href="/mybookedsessions">My Booked Sessions</Link>
         </div>
         <div>
           <Button className={"cursor-pointer"}>Login</Button>
