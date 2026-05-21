@@ -24,15 +24,22 @@ const AddTutor = () => {
     const imageFile = formData.get("photo");
     const imageData = new FormData();
     imageData.append("image", imageFile);
-    const result = await axios.post(
-      `https://api.imgbb.com/1/upload?&key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`, 
-      imageData
-    )
-    const imageUrl = result.data.data.display_url;
-    toast.success("Tutor added successfully");
-    console.log("imageUrl", imageUrl);
-    const tutorInfo = Object.fromEntries(formData.entries());
-    console.log("tutorInfo", tutorInfo);
+    
+    try{
+      const imgresult = await axios.post(
+        `https://api.imgbb.com/1/upload?&key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`, 
+        imageData
+      )
+      const imageUrl = imgresult.data.data.display_url;
+      const tutorInfo = Object.fromEntries(formData.entries());
+      tutorInfo.photo = imageUrl;
+      const res = await axios.post(`http://localhost:5000/tutors`, tutorInfo);
+      toast.success("Tutor added successfully");
+      console.log(res.data);
+    } catch(error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
   };
   return (
     <div className="container mx-auto max-w-3xl px-4 mt-6 mb-18">
