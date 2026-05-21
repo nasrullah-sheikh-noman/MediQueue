@@ -6,11 +6,11 @@ const Tutors = async () => {
   const data = res.data;
   console.log("data", data);
   return (
-    <div>
-      <div>All Tutors</div>
-      <div>
+    <div className="max-w-7xl mx-auto  m-8 gap-6">
+      <div className="text-3xl font-bold ">All Tutors</div>
+      <div className="grid grid-cols-2 gap-14 mt-4 p-4">
         {
-          data.map((tutor, i) => <Tutor key={i} tutor={tutor}></Tutor>)
+          data.map((tutor, index) => <Tutor key={index} tutor={tutor} index={index}></Tutor>)
         }
       </div>
     </div>
