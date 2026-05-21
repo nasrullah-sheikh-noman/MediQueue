@@ -16,9 +16,22 @@ const AddTutor = () => {
   const [subject, setSubject] = useState("");
   const [mode, setMode] = useState("");
 
-  const onClick = (e) => {
+  const onClick = async(e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    const imageFile = formData.get("photo");
+    const imageData = new FormData();
+    imageData.append("image", imageFile);
+    const res = await fetch(
+      `https://api.imgbb.com/1/upload?&key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`, 
+      {
+        method:"POST",
+        body:imageData
+      }
+    )
+    const result = await res.json();
+    const imageUrl = result.data.display_url;
+    console.log("imageUrl", imageUrl);
     const destination = Object.fromEntries(formData.entries());
     console.log("destination", destination);
   };
@@ -65,8 +78,8 @@ const AddTutor = () => {
           <div className="space-y-2">
             <label className="font-medium">Subject / Category</label>
 
+            <Input type="hidden" name="subject" value={subject}></Input>
             <Select required onValueChange={setSubject}>
-              <Input type="hidden" name="subject" value={subject}></Input>
               <SelectTrigger>
                 <SelectValue placeholder="Select subject" />
               </SelectTrigger>
@@ -93,8 +106,8 @@ const AddTutor = () => {
           <div className="space-y-2">
             <label className="font-medium ">Teaching Mode</label>
 
+            <Input type="hidden" value={mode} name="mode"></Input>
             <Select required onValueChange={setMode}>
-              <Input type="hidden" value={mode} name="mode"></Input>
               <SelectTrigger>
                 <SelectValue placeholder="Select mode" />
               </SelectTrigger>
