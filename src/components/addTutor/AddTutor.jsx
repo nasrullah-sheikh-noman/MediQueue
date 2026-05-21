@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import axios from "axios";
 
 import {
   Select,
@@ -22,15 +23,11 @@ const AddTutor = () => {
     const imageFile = formData.get("photo");
     const imageData = new FormData();
     imageData.append("image", imageFile);
-    const res = await fetch(
+    const result = await axios.post(
       `https://api.imgbb.com/1/upload?&key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`, 
-      {
-        method:"POST",
-        body:imageData
-      }
+      imageData
     )
-    const result = await res.json();
-    const imageUrl = result.data.display_url;
+    const imageUrl = result.data.data.display_url;
     console.log("imageUrl", imageUrl);
     const destination = Object.fromEntries(formData.entries());
     console.log("destination", destination);
