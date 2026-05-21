@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const AddTutor = () => {
   const [subject, setSubject] = useState("");
@@ -28,9 +29,10 @@ const AddTutor = () => {
       imageData
     )
     const imageUrl = result.data.data.display_url;
+    toast.success("Tutor added successfully");
     console.log("imageUrl", imageUrl);
-    const destination = Object.fromEntries(formData.entries());
-    console.log("destination", destination);
+    const tutorInfo = Object.fromEntries(formData.entries());
+    console.log("tutorInfo", tutorInfo);
   };
   return (
     <div className="container mx-auto max-w-3xl px-4 mt-6 mb-18">

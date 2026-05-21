@@ -1,8 +1,10 @@
 import React from 'react';
+import { Toaster } from 'sonner';
 
 const layout = ({ children }) => {
   return (
     <div>
+      <Toaster />
       <main>
         {children}
       </main>
