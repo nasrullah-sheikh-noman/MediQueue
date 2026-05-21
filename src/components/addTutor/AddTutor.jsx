@@ -47,10 +47,7 @@ const AddTutor = () => {
             type="file"
             required
           />
-
-          <p className="text-sm text-muted-foreground">
-            Upload image to imgbb or postimage and paste the image URL.
-          </p>
+          
         </div>
 
         {/* Subject & Teaching Mode */}
@@ -82,6 +79,14 @@ const AddTutor = () => {
 
                 <SelectItem value="english">
                   English
+                </SelectItem>
+
+                <SelectItem value="biology">
+                  Biology
+                </SelectItem>
+
+                <SelectItem value="higher-math">
+                  Higher Math
                 </SelectItem>
 
                 <SelectItem value="ict">
