@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 import {
   Select,
@@ -11,67 +12,217 @@ import {
 
 const AddTutor = () => {
   return (
-    <div className="container mx-auto flex flex-col p-4 m-8 justify-between items-center">
-      <h2 className="text-3xl font-bold">Add Tutor</h2>
-      <form className="w-full max-w-sm space-y-4">
+    <div className="container mx-auto max-w-3xl px-4 mt-6 mb-18">
+      <div className="mb-8 text-center">
+        <h2 className="text-4xl font-bold">Add Tutor</h2>
+        <p className="text-muted-foreground mt-2">
+          Fill all tutor information carefully
+        </p>
+      </div>
+
+      <form className="space-y-6 rounded-2xl border p-6 shadow-sm">
+
+        {/* Tutor Name */}
         <div className="space-y-2">
-          <label htmlFor="form-name">Name</label>
+          <label htmlFor="name" className="font-medium">
+            Tutor Name
+          </label>
+
           <Input
-            id="form-name"
+            id="name"
             type="text"
-            placeholder="Evil Rabbit"
+            placeholder="Enter tutor name"
             required
           />
         </div>
 
+        {/* Photo */}
         <div className="space-y-2">
-          <label htmlFor="form-email">Email</label>
-          <Input id="form-email" type="email" placeholder="john@example.com" />
+          <label htmlFor="photo" className="font-medium">
+            Upload Photo
+          </label>
+
+          <Input
+            id="photo"
+            type="file"
+            required
+          />
 
           <p className="text-sm text-muted-foreground">
-            We'll never share your email with anyone.
+            Upload image to imgbb or postimage and paste the image URL.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        {/* Subject & Teaching Mode */}
+        <div className="grid gap-4 md:grid-cols-2">
+
+          {/* Subject */}
           <div className="space-y-2">
-            <label htmlFor="form-phone">Phone</label>
+            <label className="font-medium" >
+              Subject / Category
+            </label>
 
-            <Input id="form-phone" type="tel" placeholder="+1 (555) 123-4567" />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="form-country">Country</label>
-
-            <Select defaultValue="us">
-              <SelectTrigger id="form-country">
-                <SelectValue />
+            <Select required>
+              <SelectTrigger>
+                <SelectValue placeholder="Select subject" />
               </SelectTrigger>
 
               <SelectContent>
-                <SelectItem value="us">United States</SelectItem>
+                <SelectItem value="math">
+                  Mathematics
+                </SelectItem>
 
-                <SelectItem value="uk">United Kingdom</SelectItem>
+                <SelectItem value="physics">
+                  Physics
+                </SelectItem>
 
-                <SelectItem value="ca">Canada</SelectItem>
+                <SelectItem value="chemistry">
+                  Chemistry
+                </SelectItem>
+
+                <SelectItem value="english">
+                  English
+                </SelectItem>
+
+                <SelectItem value="ict">
+                  ICT
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
+
+          {/* Teaching Mode */}
+          <div className="space-y-2">
+            <label className="font-medium" >
+              Teaching Mode
+            </label>
+
+            <Select required>
+              <SelectTrigger>
+                <SelectValue placeholder="Select mode" />
+              </SelectTrigger>
+
+              <SelectContent>
+                <SelectItem value="online">
+                  Online
+                </SelectItem>
+
+                <SelectItem value="offline">
+                  Offline
+                </SelectItem>
+
+                <SelectItem value="both">
+                  Both
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
         </div>
 
+        {/* Available Days & Time */}
         <div className="space-y-2">
-          <label htmlFor="form-address">Address</label>
+          <label htmlFor="schedule" className="font-medium">
+            Available Days & Time Slot
+          </label>
 
-          <Input id="form-address" type="text" placeholder="123 Main St" />
+          <Input
+            id="schedule"
+            type="text"
+            placeholder="Sun - Thu | 5:00 PM - 8:00 PM"
+            required
+          />
         </div>
 
-        <div className="flex gap-2">
-          <Button type="button" variant="outline">
+        {/* Hourly Fee & Total Slot */}
+        <div className="grid gap-4 md:grid-cols-2">
+
+          <div className="space-y-2">
+            <label htmlFor="fee" className="font-medium">
+              Hourly Fee
+            </label>
+
+            <Input
+              id="fee"
+              type="number"
+              placeholder="500"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="slot" className="font-medium">
+              Total Slot
+            </label>
+
+            <Input
+              id="slot"
+              type="number"
+              placeholder="10"
+              required
+            />
+          </div>
+
+        </div>
+
+        {/* Start Date */}
+        <div className="space-y-2">
+          <label htmlFor="date" className="font-medium">
+            Session Start Date
+          </label>
+
+          <Input
+            id="date"
+            type="date"
+            required
+          />
+        </div>
+
+        {/* Institution */}
+        <div className="space-y-2">
+          <label htmlFor="institution" className="font-medium">
+            Institution & Experience
+          </label>
+
+          <Textarea
+            id="institution"
+            placeholder="Example: Dhaka University | 3 years teaching experience"
+            required
+          />
+        </div>
+
+        {/* Location */}
+        <div className="space-y-2">
+          <label htmlFor="location" className="font-medium">
+            Location (Area / City)
+          </label>
+
+          <Input
+            id="location"
+            type="text"
+            placeholder="Mirpur, Dhaka"
+            required
+          />
+        </div>
+
+        {/* Buttons */}
+        <div className="flex flex-col gap-3 pt-2">
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+          >
             Cancel
           </Button>
 
-          <Button type="submit">Submit</Button>
+          <Button
+            type="submit"
+            className="w-full"
+          >
+            Add Tutor
+          </Button>
         </div>
+
       </form>
     </div>
   );
