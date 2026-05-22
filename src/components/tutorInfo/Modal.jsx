@@ -29,6 +29,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 const Modal = ({ tutor, open, setOpen }) => {
 
@@ -121,12 +122,12 @@ function BookingForm({
     e.preventDefault();
 
     if (noSlotsLeft) {
-      alert("No available slots left.");
+      toast.error("No available slots left.");
       return;
     }
 
     if (isDateRestricted) {
-      alert("Booking is not available yet for this tutor");
+      toast.error("Booking is not available yet for this tutor");
       return;
     }
 
@@ -145,13 +146,7 @@ function BookingForm({
 
     console.log(bookingData);
 
-    // axios.post("/bookings", bookingData)
-
-    // axios.patch(`/tutors/${tutor._id}`, {
-    //   slot: Number(tutor.slot) - 1,
-    // })
-
-    alert("Session booked successfully!");
+    toast.success("Session booked successfully!");
 
     setOpen(false);
   };
@@ -190,13 +185,20 @@ function BookingForm({
         <Label htmlFor="phone">
           Phone Number
         </Label>
+        <div className="flex gap-0 items-center overflow-hidden rounded-xl border focus-within:ring-2 focus-within:ring-primary">
+            <span className="pl-3 text-gray-500">
+              +880
+            </span>
 
-        <Input
-          id="phone"
-          name="phone"
-          placeholder="+8801XXXXXXXXX"
-          required
-        />
+            <Input
+              id="phone"
+              name="phone"
+              type="number"
+              placeholder="1XXXXXXXXX"
+              className="w-full outline-none border-0 pr-3 py-2 focus-visible:ring-0"
+              required
+            />
+        </div>
       </div>
 
       <div className="grid gap-3">
@@ -220,7 +222,7 @@ function BookingForm({
 
         <Input
           value={tutor?._id}
-          disabled
+          readOnly
         />
       </div>
 
@@ -231,7 +233,7 @@ function BookingForm({
 
         <Input
           value={tutor?.name}
-          disabled
+          readOnly
         />
       </div>
 
@@ -242,7 +244,7 @@ function BookingForm({
 
         <Input
           value="Booked"
-          disabled
+          readOnly
         />
       </div>
 
