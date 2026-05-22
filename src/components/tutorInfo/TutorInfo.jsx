@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Modal from "./Modal";
 
 const TutorInfo = ({ id }) => {
   const [data, setData] = useState(null);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(`http://localhost:5000/tutors/${id}`);
@@ -24,7 +25,7 @@ const TutorInfo = ({ id }) => {
     return  text?.toUpperCase();
   }
   return (
-    <div className="pt-7 p-24 flex flex-col space-y-9">
+    <div className="container mx-auto pt-7 p-24 flex flex-col space-y-9">
       <div className="text-2xl font-bold">
         Tutor Information
       </div>
@@ -50,7 +51,7 @@ const TutorInfo = ({ id }) => {
       }}
       className="group overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:shadow-2xl"
     >
-      <div className="relative h-[280px] w-full overflow-hidden">
+      <div className="relative h-[450px] w-full overflow-hidden">
         <motion.div
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.5 }}
@@ -177,20 +178,13 @@ const TutorInfo = ({ id }) => {
             </h2>
           </div>
 
-          
-          <motion.div 
-              whileHover={{
-                scale: 1.08,
-                boxShadow: "0px 10px 30px rgba(0,0,0,0.15)",
-              }}>
-            <Link
-              href={`/tutors/${data?._id}`}
-              whileTap={{ scale: 0.9 }}
-              className="rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all cursor-pointer"
-            >
-              Book Session
-            </Link>
-          </motion.div>
+          <div>
+            <Modal
+              tutor={data}
+              open={open}
+              setOpen={setOpen}
+            />
+          </div>
         </motion.div>
       </div>
     </motion.div>

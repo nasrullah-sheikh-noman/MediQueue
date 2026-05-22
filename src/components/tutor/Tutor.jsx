@@ -163,7 +163,6 @@ const Tutor = ({ tutor, index }) => {
 
           
           <motion.div  
-              
               whileHover={{
                 scale: 1.08,
                 boxShadow: "0px 10px 30px rgba(0,0,0,0.15)",
@@ -171,7 +170,6 @@ const Tutor = ({ tutor, index }) => {
 
             <Link
               href={`/tutors/${tutor._id}`}
-              whileTap={{ scale: 0.9 }}
               className="rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all cursor-pointer"
             >
               Book Session
