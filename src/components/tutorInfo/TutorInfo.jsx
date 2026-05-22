@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Modal from "./Modal";
+import TutorInfoSkeleton from "./TutorInfoSkeleton";
 
 const TutorInfo = ({ id }) => {
   const [data, setData] = useState(null);
@@ -16,7 +17,7 @@ const TutorInfo = ({ id }) => {
     };
     fetchData();
   }, [id]);
-  if(!data) return <p>Loading....</p>
+  if(!data) return <TutorInfoSkeleton/>
   
   const capitalizedFirst = (text) => {
     return text?.charAt(0).toUpperCase() + text?.slice(1);
