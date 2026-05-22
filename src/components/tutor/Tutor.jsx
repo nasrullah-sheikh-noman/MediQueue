@@ -38,13 +38,12 @@ const Tutor = ({ tutor, index }) => {
         <motion.div
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.5 }}
-          className="h-full w-full transition-transform duration-300 group-hover:scale-115"
+          className="h-full w-full transition-transform duration-300 group-hover:scale-110"
         >
           <Image
-            src={tutor.photo}
-            alt={tutor.name}
-            height={400}
-            width={400}
+            src={tutor?.photo}
+            alt={tutor?.name}
+            fill
             className="object-cover"
           />
         </motion.div>
@@ -162,17 +161,22 @@ const Tutor = ({ tutor, index }) => {
             </h2>
           </div>
 
-          <Link
-            href={`/tutors/${tutor._id}`}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{
-              scale: 1.08,
-              boxShadow: "0px 10px 30px rgba(0,0,0,0.15)",
-            }}
-            className="rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all cursor-pointer"
-          >
-            Book Session
-          </Link>
+          
+          <motion.div  
+              
+              whileHover={{
+                scale: 1.08,
+                boxShadow: "0px 10px 30px rgba(0,0,0,0.15)",
+              }}>
+
+            <Link
+              href={`/tutors/${tutor._id}`}
+              whileTap={{ scale: 0.9 }}
+              className="rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all cursor-pointer"
+            >
+              Book Session
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </motion.div>
