@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Tutor = ({ tutor, index }) => {
   const capitalizedFirst = (text) => {
@@ -42,7 +43,8 @@ const Tutor = ({ tutor, index }) => {
           <Image
             src={tutor.photo}
             alt={tutor.name}
-            fill
+            height={400}
+            width={400}
             className="object-cover"
           />
         </motion.div>
@@ -160,7 +162,8 @@ const Tutor = ({ tutor, index }) => {
             </h2>
           </div>
 
-          <motion.button
+          <Link
+            href={`/tutors/${tutor._id}`}
             whileTap={{ scale: 0.9 }}
             whileHover={{
               scale: 1.08,
@@ -169,7 +172,7 @@ const Tutor = ({ tutor, index }) => {
             className="rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all cursor-pointer"
           >
             Book Session
-          </motion.button>
+          </Link>
         </motion.div>
       </div>
     </motion.div>
