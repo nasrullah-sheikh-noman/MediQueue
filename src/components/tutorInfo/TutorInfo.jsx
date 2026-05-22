@@ -1,10 +1,13 @@
-import React from 'react';
+import axios from "axios";
 
-const TutorInfo = ({ id }) => {
-  console.log("id", id);
+
+const TutorInfo = async({ id }) => {
+  const info = await axios.get(`http://localhost:5000/tutors/${id}`)
+  const data = info.data;
+  // console.log("info", data);
   return (
     <div>
-      <h2>tutor info page</h2>
+      <h2>{data.name}</h2>
     </div>
   );
 };
