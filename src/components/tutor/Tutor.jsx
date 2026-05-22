@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 const Tutor = ({ tutor, index }) => {
+  console.log("tutor", tutor);
   const capitalizedFirst = (text) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
@@ -38,7 +39,7 @@ const Tutor = ({ tutor, index }) => {
         <motion.div
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.5 }}
-          className="h-full w-full transition-transform duration-300 group-hover:scale-110"
+          className="relative h-full w-full transition-transform duration-300 group-hover:scale-110"
         >
           <Image
             src={tutor?.photo}
@@ -157,12 +158,13 @@ const Tutor = ({ tutor, index }) => {
             </p>
 
             <h2 className="text-4xl font-extrabold text-primary">
-              ৳{tutor.fee}
+              ৳{tutor?.fee}
             </h2>
           </div>
 
           
-          <motion.div  
+          <motion.div 
+              whileTap={{ scale: 0.9 }}
               whileHover={{
                 scale: 1.08,
                 boxShadow: "0px 10px 30px rgba(0,0,0,0.15)",
