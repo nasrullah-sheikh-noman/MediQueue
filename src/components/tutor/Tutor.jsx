@@ -4,6 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Tutor = ({ tutor, index }) => {
+  const capitalizedFirst = (text) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
   return (
     <motion.div
       initial={{
@@ -52,16 +55,16 @@ const Tutor = ({ tutor, index }) => {
           transition={{ delay: 0.3 }}
           className="absolute left-4 top-4 rounded-full bg-primary px-4 py-1 text-sm font-semibold text-white shadow-lg"
         >
-          {tutor.subject}
+          {capitalizedFirst(tutor.subject)}
         </motion.div>
 
         <motion.div
           initial={{ x: 40, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="absolute right-4 top-4 rounded-full bg-white/10 px-4 py-1 text-sm font-medium text-white backdrop-blur-md"
+          className="absolute right-4 top-4 rounded-full bg-blue-500/80 px-4 py-1 text-sm font-medium text-white backdrop-blur-md"
         >
-          {tutor.mode}
+          {capitalizedFirst(tutor.mode)}
         </motion.div>
 
         <motion.div
@@ -160,7 +163,7 @@ const Tutor = ({ tutor, index }) => {
               scale: 1.08,
               boxShadow: "0px 10px 30px rgba(0,0,0,0.15)",
             }}
-            className="rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all"
+            className="rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all cursor-pointer"
           >
             Book Session
           </motion.button>
