@@ -35,7 +35,7 @@ const Tutor = ({ tutor, index }) => {
         <motion.div
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.5 }}
-          className="h-full w-full"
+          className="h-full w-full transition-transform duration-300 group-hover:scale-115"
         >
           <Image
             src={tutor.photo}
