@@ -42,7 +42,7 @@ const AddTutor = () => {
     }
   };
   return (
-    <div className="container mx-auto max-w-3xl px-4 mt-6 mb-18">
+    <div className="container mx-auto max-w-3xl px-4 mt-22 mb-18">
       <div className="mb-8 text-center">
         <h2 className="text-4xl font-bold">Add Tutor</h2>
         <p className="text-muted-foreground mt-2">

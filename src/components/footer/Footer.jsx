@@ -4,9 +4,9 @@ import { LiaLinkedin } from "react-icons/lia"
 
 export default function Footer() {
   return (
-    <>
+    <div>
     <footer className="border-t bg-zinc-950 text-white">
-      <div className="container mx-auto px-6 py-14">
+      <div className="container mx-auto px-12 py-14">
         
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
 
@@ -66,6 +66,6 @@ export default function Footer() {
 
       </div>
     </footer>
-  </>
+  </div>
   )
 }

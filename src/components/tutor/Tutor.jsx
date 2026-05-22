@@ -7,6 +7,9 @@ const Tutor = ({ tutor, index }) => {
   const capitalizedFirst = (text) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
+  const capitalized = (text) => {
+    return  text.toUpperCase();
+  }
   return (
     <motion.div
       initial={{
@@ -30,7 +33,6 @@ const Tutor = ({ tutor, index }) => {
       }}
       className="group overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:shadow-2xl"
     >
-      {/* Image Section */}
       <div className="relative h-[280px] w-full overflow-hidden">
         <motion.div
           whileHover={{ scale: 1.1 }}
@@ -45,17 +47,19 @@ const Tutor = ({ tutor, index }) => {
           />
         </motion.div>
 
-        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-        {/* Subject Badge */}
         <motion.div
           initial={{ y: -30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="absolute left-4 top-4 rounded-full bg-primary px-4 py-1 text-sm font-semibold text-white shadow-lg"
         >
-          {capitalizedFirst(tutor.subject)}
+          {
+            tutor.subject === "ict" 
+            ? capitalized(tutor.subject)
+            : capitalizedFirst(tutor.subject)
+          }
         </motion.div>
 
         <motion.div
@@ -132,7 +136,6 @@ const Tutor = ({ tutor, index }) => {
           ))}
         </div>
 
-        {/* Bottom Section */}
         <motion.div
           initial={{
             opacity: 0,
