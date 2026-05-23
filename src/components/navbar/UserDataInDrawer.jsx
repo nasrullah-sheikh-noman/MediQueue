@@ -1,52 +1,94 @@
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer"
+} from "@/components/ui/drawer";
+
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import Image from "next/image";
+import { FaUser, FaEnvelope } from "react-icons/fa";
 
 const UserDataInDrawer = ({ user }) => {
   return (
-     <Drawer direction="right">
-       <DrawerTrigger asChild>
-        <Avatar className="cursor-pointer">
+    <Drawer direction="right">
+      
+      {/* Trigger */}
+      <DrawerTrigger asChild>
+        <Avatar className="cursor-pointer ring-2 ring-cyan-500 hover:scale-105 transition">
           <AvatarImage src={user?.image} alt={user?.name} />
-          <AvatarFallback>N/A</AvatarFallback>
+          <AvatarFallback>
+            {user?.name?.charAt(0) || "U"}
+          </AvatarFallback>
         </Avatar>
       </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Move Goal</DrawerTitle>
-          <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+
+      <DrawerContent className="w-[380px]">
+        
+        {/* Header */}
+        <DrawerHeader className="text-center space-y-2 border-b pb-4">
+          <DrawerTitle className="text-xl font-bold">
+            My Profile
+          </DrawerTitle>
         </DrawerHeader>
-        <div className="no-scrollbar overflow-y-auto px-4">
-          {Array.from({ length: 10 }).map((_, index) => (
-            <p
-              key={index}
-              className="mb-4 leading-normal style-lyra:mb-2 style-lyra:leading-relaxed"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          ))}
+
+        {/* Body */}
+        <div className="p-6 space-y-6">
+
+          {/* Profile Image */}
+          <div className="flex flex-col items-center gap-3">
+            <Image
+              src={user?.image || "/avatar.png"}
+              alt="profile"
+              width={100}
+              height={100}
+              className="rounded-full border-2 border-cyan-500 object-cover"
+            />
+
+            <h2 className="text-lg font-semibold">
+              {user?.name}
+            </h2>
+          </div>
+
+          {/* Info Card */}
+          <div className="space-y-4 bg-gray-50 p-4 rounded-xl border">
+
+            {/* Name */}
+            <div className="flex items-center gap-3">
+              <FaUser className="text-cyan-600" />
+              <div>
+                <p className="text-xs text-gray-500">Name</p>
+                <p className="font-medium">{user?.name}</p>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-center gap-3">
+              <FaEnvelope className="text-cyan-600" />
+              <div>
+                <p className="text-xs text-gray-500">Email</p>
+                <p className="font-medium">{user?.email}</p>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <DrawerFooter>
-          <Button>Submit</Button>
+
+        {/* Footer */}
+        <DrawerFooter className="border-t p-4">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button className="w-full cursor-pointer">
+              Close
+            </Button>
           </DrawerClose>
         </DrawerFooter>
+
       </DrawerContent>
     </Drawer>
   );
