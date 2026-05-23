@@ -3,20 +3,46 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Tutor = ({ tutor, index }) => {
-  console.log("tutor", tutor);
+  const [xValue, setXValue] = useState(90);
   const capitalizedFirst = (text) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
   const capitalized = (text) => {
     return  text.toUpperCase();
   }
+  useEffect(() => {
+    const handleResize = () => {
+      if(window.innerWidth < 400) {
+        setXValue(20);
+      }
+      else if(window.innerWidth < 500) {
+        setXValue(30);
+      }
+      else if (window.innerWidth < 640) {
+        setXValue(40); // mobile
+      } else if (window.innerWidth < 1024) {
+        setXValue(60); // tablet
+      } else {
+        setXValue(90); // desktop
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
   return (
     <motion.div
       initial={{
         opacity: 0,
-        x: index % 2 === 0 ? -120 : 120,
+        x: index % 2 === 0 ? -xValue : xValue,
         rotate: index % 2 === 0 ? -3 : 3,
       }}
       whileInView={{
@@ -33,7 +59,7 @@ const Tutor = ({ tutor, index }) => {
         y: -10,
         scale: 1.02,
       }}
-      className="group overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:shadow-2xl"
+      className="group overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:shadow-2xl "
     >
       <div className="relative h-[280px] w-full overflow-hidden">
         <motion.div

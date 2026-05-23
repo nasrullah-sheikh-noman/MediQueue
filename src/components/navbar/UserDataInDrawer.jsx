@@ -106,7 +106,7 @@ const UserDataInDrawer = ({ user }) => {
 
           {/* Close */}
           <DrawerClose asChild>
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full cursor-pointer">
               Close
             </Button>
           </DrawerClose>
