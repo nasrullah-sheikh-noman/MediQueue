@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { authClient } from "@/lib/auth-client";
 import {
   Avatar,
+  AvatarBadge,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
@@ -44,14 +45,10 @@ const Navbar = () => {
             <div className="flex gap-2">
               <h2 className="text-lg font-semibold">{user?.name}</h2>
               <div>
-                 <Avatar className={"cursor-pointer"}>
-                  <AvatarImage
-                    src={user?.image}
-                    alt={user?.name}
-                    className="grayscale"
-                  />
-                  <AvatarFallback>N/A</AvatarFallback>
-                </Avatar>
+                  <Avatar className="cursor-pointer">
+                    <AvatarImage src={user?.image} alt="@shadcn" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
               </div>
             </div>
             
