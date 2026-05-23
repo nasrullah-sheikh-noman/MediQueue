@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const NotFoundPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-zinc-950 text-white flex items-center justify-center px-6">
+    <div className="mt-15 min-h-screen bg-gradient-to-br from-black via-zinc-900 to-zinc-950 text-white flex items-center justify-center px-6">
       <div className="max-w-xl w-full text-center">
         
         <h1 className="text-8xl md:text-9xl font-black bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-transparent">

@@ -23,7 +23,7 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log(email, password);
+    // console.log(email, password);
 
     const { data, error } = await authClient.signIn.email({
       email: email,
@@ -94,7 +94,7 @@ const Login = () => {
               />
             </Field>
 
-            {/* Forgot Password */}
+            {/* Forgot Password
             <div className="flex justify-end">
               <Link
                 href="/forgot-password"
@@ -102,7 +102,7 @@ const Login = () => {
               >
                 Forgot Password?
               </Link>
-            </div>
+            </div> */}
 
             {/* Login Button */}
             <Button type="submit" className="w-full cursor-pointer">
