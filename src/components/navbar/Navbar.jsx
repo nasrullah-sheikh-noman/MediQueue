@@ -9,6 +9,7 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 import Spinner from "./Spinner";
+import UserDataInDrawer from "./UserDataInDrawer";
 
 
 const Navbar = () => {
@@ -19,7 +20,6 @@ const Navbar = () => {
   console.log("session", session);
   const user = session?.user;
   console.log("user", user);
-
 
   return (
     <div className="fixed top-0 w-full z-50 bg-gray-50 shadow-xl border border-b-2 "> 
@@ -45,10 +45,7 @@ const Navbar = () => {
             <div className="flex gap-2">
               <h2 className="text-lg font-semibold">{user?.name}</h2>
               <div>
-                  <Avatar className="cursor-pointer">
-                    <AvatarImage src={user?.image} alt="@shadcn" />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
+                <UserDataInDrawer user={user}/>
               </div>
             </div>
             
