@@ -13,31 +13,42 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Register = () => {
-  const handleRegister = (e) => {
+  const router = useRouter();
+  const handleRegister = async(e) => {
     e.preventDefault();
 
-    const form = e.target;
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    console.log("data", data);
 
-    const name = form.name.value;
-    const photo = form.photo.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const confirmPassword = form.confirmPassword.value;
+    const password = data.password;
+    const confirmPassword = data.confirmPassword;
+
+    if (password.length < 6 ) {
+      return toast.warning("Password must be 6 characters");
+    }
+
 
     if (password !== confirmPassword) {
       return toast.warning("Passwords do not match");
     }
-
-    console.log({
-      name,
-      photo,
-      email,
-      password,
-    });
-
-    // register logic here
+    try {
+      const imageData = new FormData();
+      imageData.append("image", data.photo);
+      const res = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`, imageData);
+      const photoUrl = res.data.data.url;
+      console.log("photoUrl", photoUrl);
+      toast.success("Registration successful");
+      
+      router.push("/");
+    } catch(error) {
+      console.log("error", error);
+    } 
+    
   };
 
   const handleGoogleRegister = () => {
@@ -219,7 +230,7 @@ const Register = () => {
           <Button
             onClick={handleGoogleRegister}
             variant="outline"
-            className="w-full h-11 rounded-xl flex items-center gap-2 cursor-poi"
+            className="w-full h-11 rounded-xl flex items-center gap-2 cursor-pointer"
           >
             <FaGoogle />
             Continue with Google
@@ -229,7 +240,7 @@ const Register = () => {
           <Button
             onClick={handleGithubRegister}
             variant="outline"
-            className="w-full h-11 rounded-xl flex items-center gap-2  cursor-poi"
+            className="w-full h-11 rounded-xl flex items-center gap-2  cursor-pointer"
           >
             <FaGithub />
             Continue with Github
