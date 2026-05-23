@@ -122,12 +122,12 @@ function BookingForm({
     e.preventDefault();
 
     if (noSlotsLeft) {
-      toast.error("No available slots left.");
+      toast.warning("No available slots left.");
       return;
     }
 
     if (isDateRestricted) {
-      toast.error("Booking is not available yet for this tutor");
+      toast.warning("Booking is not available yet for this tutor");
       return;
     }
 
