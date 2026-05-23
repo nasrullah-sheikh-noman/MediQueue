@@ -1,9 +1,10 @@
+import Register from '@/components/register/Register';
 import React from 'react';
 
 const RegisterPage = () => {
   return (
     <div>
-      register page
+      <Register/>
     </div>
   );
 };
