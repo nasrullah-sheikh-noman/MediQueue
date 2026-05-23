@@ -13,9 +13,22 @@ import {
 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Image from "next/image";
-import { FaUser, FaEnvelope } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaSignOutAlt } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const UserDataInDrawer = ({ user }) => {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await authClient.signOut(); // 🔥 logout user
+      router.push("/login");      // redirect to login page
+    } catch (error) {
+      console.log("Logout error:", error);
+    }
+  };
+
   return (
     <Drawer direction="right">
       
@@ -32,7 +45,7 @@ const UserDataInDrawer = ({ user }) => {
       <DrawerContent className="w-[380px]">
         
         {/* Header */}
-        <DrawerHeader className="text-center space-y-2 border-b pb-4">
+        <DrawerHeader className="text-center border-b pb-4">
           <DrawerTitle className="text-xl font-bold">
             My Profile
           </DrawerTitle>
@@ -56,10 +69,9 @@ const UserDataInDrawer = ({ user }) => {
             </h2>
           </div>
 
-          {/* Info Card */}
+          {/* Info */}
           <div className="space-y-4 bg-gray-50 p-4 rounded-xl border">
-
-            {/* Name */}
+            
             <div className="flex items-center gap-3">
               <FaUser className="text-cyan-600" />
               <div>
@@ -68,7 +80,6 @@ const UserDataInDrawer = ({ user }) => {
               </div>
             </div>
 
-            {/* Email */}
             <div className="flex items-center gap-3">
               <FaEnvelope className="text-cyan-600" />
               <div>
@@ -81,12 +92,25 @@ const UserDataInDrawer = ({ user }) => {
         </div>
 
         {/* Footer */}
-        <DrawerFooter className="border-t p-4">
+        <DrawerFooter className="border-t p-4 space-y-2">
+
+          {/* Logout Button */}
+          <Button
+            onClick={handleLogout}
+            variant="destructive"
+            className="w-full flex items-center gap-2 cursor-pointer"
+          >
+            <FaSignOutAlt />
+            Logout
+          </Button>
+
+          {/* Close */}
           <DrawerClose asChild>
-            <Button className="w-full cursor-pointer">
+            <Button variant="outline" className="w-full">
               Close
             </Button>
           </DrawerClose>
+
         </DrawerFooter>
 
       </DrawerContent>
