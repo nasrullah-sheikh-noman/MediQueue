@@ -42,8 +42,8 @@ const Tutor = ({ tutor, index }) => {
           className="relative h-full w-full transition-transform duration-300 group-hover:scale-110"
         >
           <Image
-            src={tutor?.photo}
-            alt={tutor?.name}
+            src={tutor?.photo || "/defult.png"}
+            alt={tutor?.name || "Tutor"}
             fill
             className="object-cover"
           />
