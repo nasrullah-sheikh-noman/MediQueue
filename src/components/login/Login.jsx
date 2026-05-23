@@ -11,9 +11,13 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
-  const handleLogin = (e) => {
+  const router = useRouter();
+  const handleLogin = async(e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
@@ -21,7 +25,19 @@ const Login = () => {
 
     console.log(email, password);
 
-    // login logic here
+    const { data, error } = await authClient.signIn.email({
+      email: email,
+      password: password,
+      rememberMe: true,
+    });
+    if(error) {
+      toast.warning(error.message);
+      console.log("error",error);
+    } else {
+      toast.success("Login successful");
+      router.push("/");
+      console.log("data", data);
+    }
   };
 
   const handleGoogleLogin = () => {
