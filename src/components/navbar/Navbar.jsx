@@ -7,9 +7,8 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
+import Spinner from "./Spinner";
 
-import { LoaderIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 const Navbar = () => {
   const { 
@@ -20,16 +19,6 @@ const Navbar = () => {
   const user = session?.user;
   console.log("user", user);
 
-  function Spinner({ className, ...props }) {
-    return (
-      <LoaderIcon
-        role="status"
-        aria-label="Loading"
-        className={cn("size-4 animate-spin", className)}
-        {...props}
-      />
-    )
-  }
 
   return (
     <div className="fixed top-0 w-full z-50 bg-gray-50 shadow-xl border border-b-2 "> 
@@ -48,14 +37,14 @@ const Navbar = () => {
           {
             isPending ? 
               <div className="flex items-center gap-4">
-                <Spinner />
+                <Spinner/>
               </div>
             :
             user ? 
             <div className="flex gap-2">
               <h2 className="text-lg font-semibold">{user?.name}</h2>
               <div>
-                 <Avatar>
+                 <Avatar className={"cursor-pointer"}>
                   <AvatarImage
                     src={user?.image}
                     alt={user?.name}
