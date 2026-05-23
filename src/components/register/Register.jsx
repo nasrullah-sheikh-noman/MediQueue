@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const Register = () => {
   const router = useRouter();
@@ -25,6 +26,7 @@ const Register = () => {
     const data = Object.fromEntries(formData.entries());
     console.log("data", data);
 
+    let photoUrl = "";
     const password = data.password;
     const confirmPassword = data.confirmPassword;
 
@@ -40,14 +42,27 @@ const Register = () => {
       const imageData = new FormData();
       imageData.append("image", data.photo);
       const res = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`, imageData);
-      const photoUrl = res.data.data.url;
+      photoUrl = res.data.data.url;
       console.log("photoUrl", photoUrl);
-      toast.success("Registration successful");
       
-      router.push("/");
     } catch(error) {
       console.log("error", error);
     } 
+
+    const { data: userData, error } = await authClient.signUp.email({
+      name: data.name,
+      email: data.email, 
+      password: data.password, 
+      image: photoUrl,
+    });
+    if(error) {
+      toast.warning(error.message)
+      console.log("error", error);
+    } else {
+      toast.success("Registration successful");
+      router.push("/");
+      console.log("userdata", userData);
+    }
     
   };
 
