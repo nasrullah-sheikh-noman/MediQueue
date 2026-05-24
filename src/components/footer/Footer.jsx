@@ -27,11 +27,11 @@ export default function Footer() {
             </h3>
 
             <div className="space-y-2 text-sm text-zinc-400">
-              <Link href="/">Find Tutors</Link>
+              <Link href="/tutors">Find Tutors</Link>
               <br />
-              <Link href="/">Online Courses</Link>
+              <Link href="/onlinecourses">Online Courses</Link>
               <br />
-              <Link href="/">Live Classes</Link>
+              <Link href="/liveclasses">Live Classes</Link>
             </div>
           </div>
 
@@ -52,9 +52,9 @@ export default function Footer() {
             </h3>
 
             <div className="flex gap-4 text-sm text-zinc-400">
-              <Link href="/"><FaFacebookF/></Link>
-              <Link href="/"><LiaLinkedin/></Link>
-              <Link href="/"><FaGithub/></Link>
+              <Link href="/facebook"><FaFacebookF/></Link>
+              <Link href="/linkedin"><LiaLinkedin/></Link>
+              <Link href="/github"><FaGithub/></Link>
             </div>
           </div>
 
