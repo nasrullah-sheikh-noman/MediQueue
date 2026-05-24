@@ -1,4 +1,5 @@
 import Tutors from "@/components/tutors/Tutors";
+import TutorsSkeleton from "@/components/tutors/TutorsSkeleton";
 
 export const metadata = {
   title: "Tutors | MediQueue",
@@ -7,11 +8,9 @@ export const metadata = {
 
 const TutorsPage = () => {
   return (
-    <>
-      <div>
-        <Tutors />
-      </div>
-    </>
+    <suspense fallback={<TutorsSkeleton/>}>
+      <Tutors />
+    </suspense>
   );
 };
 

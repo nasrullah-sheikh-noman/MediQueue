@@ -13,8 +13,8 @@ const TutorInfoSkeleton = () => {
 
           {/* overlay text skeleton */}
           <div className="absolute bottom-5 left-5 space-y-2">
-            <Skeleton className="h-6 w-48 bg-white/30" />
-            <Skeleton className="h-4 w-32 bg-white/20" />
+            <Skeleton className="h-6 w-48 bg-white/10" />
+            <Skeleton className="h-4 w-32 bg-white/10" />
           </div>
         </div>
 
