@@ -40,12 +40,26 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    console.log("Google Login");
+  const handleGoogleLogin = async() => {
+    const {data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+    if(error) {
+      toast.warning(error.message);
+      console.log("error", error);
+    }
   };
 
-  const handleGithubLogin = () => {
-    console.log("Github Login");
+  const handleGithubLogin = async() => {
+    const {data, error} = await authClient.signIn.social({
+        provider: "github",
+        callbackURL: "/",
+    })
+    if(error) {
+      toast.warning(error.message);
+      console.log("error", error);
+    }
   };
 
   return (

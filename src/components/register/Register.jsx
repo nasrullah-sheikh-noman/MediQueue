@@ -66,12 +66,25 @@ const Register = () => {
     
   };
 
-  const handleGoogleRegister = () => {
-    console.log("Google Register");
-  };
-
-  const handleGithubRegister = () => {
-    console.log("Github Register");
+  const handleGoogleRegister = async() => {
+      const {data, error } = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+      if(error) {
+        toast.warning(error.message);
+        console.log("error", error);
+      }
+    };
+  const handleGithubRegister = async() => {
+    const {data, error} = await authClient.signIn.social({
+        provider: "github",
+        callbackURL: "/",
+    })
+    if(error) {
+      toast.warning(error.message);
+      console.log("error", error);
+    }
   };
 
   return (
