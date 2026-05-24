@@ -2,17 +2,14 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { authClient } from "@/lib/auth-client";
-import {
-  Avatar,
-  AvatarBadge,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
 import Spinner from "./Spinner";
 import UserDataInDrawer from "./UserDataInDrawer";
+import { usePathname } from "next/navigation";
 
 
 const Navbar = () => {
+  const pathName = usePathname();
+
   const { 
     data: session, 
     isPending
@@ -27,12 +24,48 @@ const Navbar = () => {
         <Link href="/" className="text-4xl font-extrabold text-cyan-700">
           MediQueue
         </Link>
-        <div className="flex gap-3 text-gray-700">
-          <Link href="/about">About</Link>
-          <Link href="/tutors">Tutors</Link>
-          <Link href="/addtutor">Add Tutor</Link>
-          <Link href="/mytutor">My Tutor</Link>
-          <Link href="/mybookedsessions">My Booked Sessions</Link>
+        <div className="flex gap-3 text-gray-700 ">
+          <Link 
+          href="/tutors" 
+          className={`hover:scale-105 transition-all duration-200 hover:text-cyan-600 hover:border-b-2
+            ${
+              pathName === "/tutors"
+              ? "scale-105 transition-all duration-200 text-cyan-600 border-b-2"
+              : ""
+            }
+          `}
+          
+          >Tutors</Link>
+          <Link 
+           href="/addtutor" 
+           className={`hover:scale-105 transition-all duration-200 hover:text-cyan-600 hover:border-b-2
+            ${
+              pathName === "/addtutor"
+              ? "scale-105 transition-all duration-200 text-cyan-600 border-b-2"
+              : ""
+            }
+          `}
+           >Add Tutor</Link>
+          <Link 
+          href="/mytutor" 
+          className={`hover:scale-105 transition-all duration-200 hover:text-cyan-600 hover:border-b-2
+            ${
+              pathName === "/mytutor"
+              ? "scale-105 transition-all duration-200 text-cyan-600 border-b-2"
+              : ""
+            }
+          `}
+          >My Tutor</Link>
+          <Link 
+          href="/mybookedsessions" 
+         className={`hover:scale-105 transition-all duration-200 hover:text-cyan-600 hover:border-b-2
+            ${
+              pathName === "/mybookedsessions"
+              ? "scale-105 transition-all duration-200 text-cyan-600 border-b-2"
+              : ""
+            }
+          `}
+          >My Booked Sessions</Link>
         </div>
         <div>
           {

@@ -1,7 +1,7 @@
 
 const TutorsSkeleton = () => {
   return (
- <>
+    <>
       {Array.from({ length: 14 }).map((_, index) => (
         <div
           key={index}

@@ -8,9 +8,9 @@ export const metadata = {
 
 const TutorsPage = () => {
   return (
-    <suspense fallback={<TutorsSkeleton/>}>
+    <div>
       <Tutors />
-    </suspense>
+    </div>
   );
 };
 
