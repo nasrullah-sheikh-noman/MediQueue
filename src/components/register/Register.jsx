@@ -60,7 +60,7 @@ const Register = () => {
       console.log("error", error);
     } else {
       toast.success("Registration successful");
-      router.push("/");
+      router.push("/login");
       console.log("userdata", userData);
     }
     

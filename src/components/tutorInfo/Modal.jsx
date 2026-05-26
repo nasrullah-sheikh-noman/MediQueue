@@ -75,7 +75,7 @@ const Modal = ({ tutor, open, setOpen }) => {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button className="rounded-2xl">
+        <Button className="rounded-2xl cursor-pointer">
           Book Session
         </Button>
       </DrawerTrigger>
@@ -210,7 +210,7 @@ function BookingForm({
           id="email"
           name="email"
           type="email"
-          defaultValue="student@gmail.com"
+          placeholder="student@gmail.com"
           required
         />
       </div>
@@ -251,7 +251,7 @@ function BookingForm({
       <Button
         type="submit"
         disabled={noSlotsLeft || isDateRestricted}
-        className="rounded-2xl"
+        className="rounded-2xl cursor-pointer"
       >
         Confirm Booking
       </Button>

@@ -22,7 +22,7 @@ const UserDataInDrawer = ({ user }) => {
 
   const handleLogout = async () => {
     try {
-      await authClient.signOut(); // 🔥 logout user
+      await authClient.signOut(); //  logout user
       router.push("/login");      // redirect to login page
     } catch (error) {
       console.log("Logout error:", error);
@@ -42,7 +42,7 @@ const UserDataInDrawer = ({ user }) => {
         </Avatar>
       </DrawerTrigger>
 
-      <DrawerContent className="w-[380px]">
+      <DrawerContent className=" w-[380px] overflow-y-scroll overflow-x-hidden">
         
         {/* Header */}
         <DrawerHeader className="text-center border-b pb-4">
