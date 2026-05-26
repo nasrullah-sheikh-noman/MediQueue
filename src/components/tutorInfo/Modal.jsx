@@ -30,10 +30,24 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { authClient } from "@/lib/auth-client";
 
 const Modal = ({ tutor, open, setOpen }) => {
 
   const isDesktop = useMediaQuery("(min-width: 768px)");
+
+  const [user, setUser] = React.useState(null);
+
+  React.useInsertionEffect(() => {
+    const fetchSessionos = async () => {
+      const { data: session } = await authClient.getSession();
+      setUser(session?.user);
+    }
+    fetchSessionos();
+  }, []);
+  // console.log("user", user);
+
+  
 
   const currentDate = new Date();
   const sessionDate = new Date(tutor?.date);
@@ -62,6 +76,7 @@ const Modal = ({ tutor, open, setOpen }) => {
           </DialogHeader>
 
           <BookingForm
+            user={user}
             tutor={tutor}
             isDateRestricted={isDateRestricted}
             noSlotsLeft={noSlotsLeft}
@@ -112,6 +127,7 @@ const Modal = ({ tutor, open, setOpen }) => {
 };
 
 function BookingForm({
+  user,
   className,
   tutor,
   isDateRestricted,
@@ -176,7 +192,7 @@ function BookingForm({
         <Input
           id="studentName"
           name="studentName"
-          placeholder="Enter your name"
+          defaultValue={user?.name}
           required
         />
       </div>
@@ -210,7 +226,7 @@ function BookingForm({
           id="email"
           name="email"
           type="email"
-          placeholder="student@gmail.com"
+          defaultValue={user?.email}
           required
         />
       </div>
