@@ -31,6 +31,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
+import axios from "axios";
 
 const Modal = ({ tutor, open, setOpen }) => {
 
@@ -136,6 +137,7 @@ function BookingForm({
 }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // console.log("user", user);
 
     if (noSlotsLeft) {
       toast.warning("No available slots left.");
@@ -160,9 +162,16 @@ function BookingForm({
       bookStatus: "Booked",
     };
 
-    console.log(bookingData);
-
+    // console.log("bookingData", bookingData);
+    try {
+      const res = await axios.post("http://localhost:5000/booking", bookingData)
+      // console.log("fetchData", res.data);
     toast.success("Session booked successfully!");
+    } catch (error) {
+      console.log("error", error);
+    }
+    
+
 
     setOpen(false);
   };

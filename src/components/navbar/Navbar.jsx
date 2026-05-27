@@ -14,9 +14,9 @@ const Navbar = () => {
     data: session, 
     isPending
   } = authClient.useSession() 
-  console.log("session", session);
+  // console.log("session", session);
   const user = session?.user;
-  console.log("user", user);
+  // console.log("user", user);
 
   return (
     <div className="fixed top-0 w-full z-50 bg-gray-50 shadow-xl border border-b-2 "> 
