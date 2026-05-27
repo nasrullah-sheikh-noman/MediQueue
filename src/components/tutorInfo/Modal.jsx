@@ -218,7 +218,8 @@ function BookingForm({
             <Input
               id="phone"
               name="phone"
-              type="number"
+              type="tel"
+              pattern="[0-9]{10}"
               placeholder="1XXXXXXXXX"
               className="w-full outline-none border-0 pr-3 py-2 focus-visible:ring-0"
               required
