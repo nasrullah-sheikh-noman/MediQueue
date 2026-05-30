@@ -169,7 +169,7 @@ function BookingForm({
 
     // console.log("bookingData", bookingData);
     try {
-      await axios.post("http://localhost:5000/booking", bookingData)
+      await axios.post(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/booking`, bookingData)
       // console.log("fetchData", res.data);
       toast.success("Session booked successfully!");
       setTimeout(() => {

@@ -6,7 +6,7 @@ const MyBookedSessions = async () => {
   const user = auth.currentUser;
 
   const res = await axios.get(
-    `http://localhost:5000/booking?email=${user?.email}`
+    `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/booking?email=${user?.email}`
   );
 
   const bookingData = res.data;

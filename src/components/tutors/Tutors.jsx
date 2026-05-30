@@ -12,7 +12,7 @@ const Tutors = () => {
   useEffect(() => {
     const fetchTutors = async() => {
       try{
-        const res = await axios.get("http://localhost:5000/tutors");
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/tutors`);
         setData(res.data);
       } catch(error) {
         console.log("error", error);

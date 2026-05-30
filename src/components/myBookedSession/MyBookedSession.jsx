@@ -21,7 +21,7 @@ const MyBookedSession = ({ data }) => {
   const handleCancelBooking = async () => {
     try {
       await axios.patch(
-        `http://localhost:5000/booking/${data._id}`,
+        `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/booking/${data._id}`,
         {
           status: "cancelled",
         }

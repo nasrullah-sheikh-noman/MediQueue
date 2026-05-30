@@ -12,7 +12,7 @@ const TutorInfo = ({ id }) => {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`http://localhost:5000/tutors/${id}`);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/tutors/${id}`);
       setData(res.data);
     };
     fetchData();

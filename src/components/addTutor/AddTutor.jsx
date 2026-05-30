@@ -34,7 +34,7 @@ const AddTutor = () => {
       const imageUrl = imgresult.data.data.display_url;
       const tutorInfo = Object.fromEntries(formData.entries());
       tutorInfo.photo = imageUrl;
-      const res = await axios.post(`http://localhost:5000/tutors`, tutorInfo);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/tutors`, tutorInfo);
       toast.success("Tutor added successfully");
       console.log(res.data);
     } catch(error) {
