@@ -8,8 +8,9 @@ const MyBookedSessions = async () => {
     headers: await headers()
   });
   const user = session.user;
-  console.log("user", user);
+  // console.log("user", user);
   // console.log(user?.email);
+  // console.log("url", process.env.NEXT_PUBLIC_BETTER_AUTH_URL);
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/booking?email=${user?.email}`
   );
