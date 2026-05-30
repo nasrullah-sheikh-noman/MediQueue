@@ -7,7 +7,7 @@ const MyBookedSessions = async () => {
   const session = await auth.api.getSession({
     headers: await headers()
   });
-  const user = session.user;
+  const user = session?.user;
   // console.log("user", user);
   // console.log(user?.email);
   // console.log("url", process.env.NEXT_PUBLIC_BETTER_AUTH_URL);

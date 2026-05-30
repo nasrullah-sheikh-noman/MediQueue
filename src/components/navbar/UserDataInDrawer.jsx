@@ -22,8 +22,8 @@ const UserDataInDrawer = ({ user }) => {
 
   const handleLogout = async () => {
     try {
-      await authClient.signOut(); //  logout user
-      router.push("/login");      // redirect to login page
+      await authClient.signOut(); 
+      router.push("/login");   
     } catch (error) {
       console.log("Logout error:", error);
     }
