@@ -32,8 +32,11 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Modal = ({ tutor, open, setOpen }) => {
+
+  const router = useRouter();
 
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -77,6 +80,7 @@ const Modal = ({ tutor, open, setOpen }) => {
           </DialogHeader>
 
           <BookingForm
+            router={router}
             user={user}
             tutor={tutor}
             isDateRestricted={isDateRestricted}
@@ -128,6 +132,7 @@ const Modal = ({ tutor, open, setOpen }) => {
 };
 
 function BookingForm({
+  router,
   user,
   className,
   tutor,
@@ -164,10 +169,14 @@ function BookingForm({
 
     // console.log("bookingData", bookingData);
     try {
-      const res = await axios.post("http://localhost:5000/booking", bookingData)
+      await axios.post("http://localhost:5000/booking", bookingData)
       // console.log("fetchData", res.data);
-    toast.success("Session booked successfully!");
+      toast.success("Session booked successfully!");
+      setTimeout(() => {
+        router.push("/mybookedsessions")
+      }, 1500);
     } catch (error) {
+      toast.warning(error.message);
       console.log("error", error);
     }
     

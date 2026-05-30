@@ -17,7 +17,7 @@ import {
 } from "../ui/alert-dialog";
 
 const MyBookedSession = ({ data }) => {
-  console.log("bookingdata ", data);
+  // console.log("bookingdata ", data);
   const handleCancelBooking = async () => {
     try {
       await axios.patch(
@@ -26,7 +26,6 @@ const MyBookedSession = ({ data }) => {
           status: "cancelled",
         }
       );
-
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -49,7 +48,7 @@ const MyBookedSession = ({ data }) => {
               : "bg-green-100 text-green-600"
           }`}
         >
-          {data.bookStatus}
+          {data.status === "cancelled" ? "cancelled" : "booked"}
         </span>
       </td>
 
