@@ -1,10 +1,15 @@
 import axios from "axios";
 import MyBookedSession from "../myBookedSession/MyBookedSession";
 import { auth } from "@/utils/auth";
+import { headers } from "next/headers";
 
 const MyBookedSessions = async () => {
-  const user = auth.currentUser;
-
+  const session = await auth.api.getSession({
+    headers: await headers()
+  });
+  const user = session.user;
+  console.log("user", user);
+  // console.log(user?.email);
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/booking?email=${user?.email}`
   );
