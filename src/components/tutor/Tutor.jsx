@@ -71,6 +71,8 @@ const Tutor = ({ tutor, index }) => {
             src={tutor?.photo || "/defult.png"}
             alt={tutor?.name || "Tutor"}
             fill
+            priority
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover"
           />
         </motion.div>

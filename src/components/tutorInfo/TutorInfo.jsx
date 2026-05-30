@@ -62,6 +62,8 @@ const TutorInfo = ({ id }) => {
             src={data?.photo}
             alt={data?.name}
             fill
+            priority
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover"
           />
         </motion.div>
